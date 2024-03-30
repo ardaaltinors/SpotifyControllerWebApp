@@ -1,15 +1,18 @@
 import React, { Component } from "react";
-import { render } from "react-dom";
+import { createRoot } from "react-dom/client"; // Import createRoot
+import HomePage from "./HomePage";
 
 export default class App extends Component {
-	constructor(props) {
-		super(props);
-	}
-
 	render() {
-		return <h1>React test code.</h1>;
+		return (
+			<div>
+				<HomePage />
+			</div>
+		);
 	}
 }
 
 const appDiv = document.getElementById("app");
-render(<App />, appDiv);
+// Use createRoot to create a root and then render your component
+const root = createRoot(appDiv); // Create a root.
+root.render(<App />); // Use the render method on the root to render your component.
