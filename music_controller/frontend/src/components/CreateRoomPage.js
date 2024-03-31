@@ -1,16 +1,14 @@
 import React, { Component } from "react";
-import {
-	Button,
-	Grid,
-	Typography,
-	TextField,
-	FormHelperText,
-	FormControl,
-	Radio,
-	RadioGroup,
-	FormControlLabel,
-} from "@mui/material";
+import Button from "@material-ui/core/Button";
+import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
+import TextField from "@material-ui/core/TextField";
+import FormHelperText from "@material-ui/core/FormHelperText";
+import FormControl from "@material-ui/core/FormControl";
 import { Link } from "react-router-dom";
+import Radio from "@material-ui/core/Radio";
+import RadioGroup from "@material-ui/core/RadioGroup";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
 
 export default class CreateRoomPage extends Component {
 	defaultVotes = 2;
@@ -23,8 +21,8 @@ export default class CreateRoomPage extends Component {
 		};
 
 		this.handleRoomButtonPressed = this.handleRoomButtonPressed.bind(this);
-		this.handleGuestCanPauseChange = this.handleGuestCanPauseChange.bind(this);
 		this.handleVotesChange = this.handleVotesChange.bind(this);
+		this.handleGuestCanPauseChange = this.handleGuestCanPauseChange.bind(this);
 	}
 
 	handleVotesChange(e) {
@@ -48,17 +46,17 @@ export default class CreateRoomPage extends Component {
 				guest_can_pause: this.state.guestCanPause,
 			}),
 		};
-		fetch("/api/create-room/", requestOptions)
+		fetch("/api/create-room", requestOptions)
 			.then((response) => response.json())
-			.then((data) => console.log(data));
+			.then((data) => this.props.history.push("/room/" + data.code));
 	}
 
 	render() {
 		return (
 			<Grid container spacing={1}>
 				<Grid item xs={12} align="center">
-					<Typography variant="h4" component="h4">
-						Create a Room
+					<Typography component="h4" variant="h4">
+						Create A Room
 					</Typography>
 				</Grid>
 				<Grid item xs={12} align="center">
@@ -99,7 +97,7 @@ export default class CreateRoomPage extends Component {
 							}}
 						/>
 						<FormHelperText>
-							<div align="center">Votes Required to Skip Song</div>
+							<div align="center">Votes Required To Skip Song</div>
 						</FormHelperText>
 					</FormControl>
 				</Grid>
@@ -109,7 +107,7 @@ export default class CreateRoomPage extends Component {
 						variant="contained"
 						onClick={this.handleRoomButtonPressed}
 					>
-						Create a Room
+						Create A Room
 					</Button>
 				</Grid>
 				<Grid item xs={12} align="center">

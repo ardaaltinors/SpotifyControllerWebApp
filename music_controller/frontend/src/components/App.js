@@ -1,8 +1,12 @@
 import React, { Component } from "react";
-import { createRoot } from "react-dom/client"; // Import createRoot
+import { render } from "react-dom";
 import HomePage from "./HomePage";
 
 export default class App extends Component {
+	constructor(props) {
+		super(props);
+	}
+
 	render() {
 		return (
 			<div>
@@ -13,6 +17,4 @@ export default class App extends Component {
 }
 
 const appDiv = document.getElementById("app");
-// Use createRoot to create a root and then render your component
-const root = createRoot(appDiv); // Create a root.
-root.render(<App />); // Use the render method on the root to render your component.
+render(<App />, appDiv);
